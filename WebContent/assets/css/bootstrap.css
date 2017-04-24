@@ -1082,11 +1082,11 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
+  color: #BBE8F2;
+  background-color: #031418;
 }
 input,
 button,
@@ -1097,12 +1097,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #E8F9FD;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #031418;
   text-decoration: underline;
 }
 a:focus {
@@ -1265,6 +1265,7 @@ h6 .small,
 h1,
 .h1 {
   font-size: 36px;
+  text-align: center;
 }
 h2,
 .h2 {
@@ -1273,6 +1274,7 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
+  text-align: center;
 }
 h4,
 .h4 {
@@ -1341,7 +1343,7 @@ mark,
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #286090;
+  color: #031418;
 }
 .text-success {
   color: #3c763d;
