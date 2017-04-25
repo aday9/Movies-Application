@@ -19,7 +19,7 @@
 						<p>Sorry, the list of movies is empty.</p>
 					</c:when>
 					<c:otherwise>
-						<h3>Here is a list of some Disney movies Test123</h3>
+						<h3>Here is a list of some Disney movies</h3>
 						<c:forEach var="movie" items="${movies}">
 							<div class="span3">
 								<h2>${movie.title}</h2>
