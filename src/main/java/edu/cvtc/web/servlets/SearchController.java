@@ -1,8 +1,8 @@
 package edu.cvtc.web.servlets;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,58 +16,44 @@ import edu.cvtc.web.dao.impl.MovieDaoImpl;
 import edu.cvtc.web.model.Movie;
 
 /**
- * Servlet implementation class ViewAllController
+ * Servlet implementation class SearchController
  */
-@WebServlet({ "/ViewAll", "/Class.List", "/Roster" })
-public class ViewAllController extends HttpServlet {
+@WebServlet("/Search")
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String target = null;
 		
 		try {
+			
 			final MovieDao movieDao = new MovieDaoImpl();
 			final List<Movie> movies = movieDao.retrieveMovies();
 			
-			final String sortType = request.getParameter("sortType");
 			
-			request.setAttribute("movies", movies);
+			final String title = request.getParameter("title");
 			
-			if (null != sortType) {
-				sort(movies, sortType);
-			}
+			final List<Movie> filteredMovies = movies
+													.stream()
+													.filter((movie) -> movie.getTitle().equals(title))
+													.collect(Collectors.toList());
+			
+			request.setAttribute("movies", filteredMovies);
+			
 			target = "view-all.jsp";
 			
 		} catch (MovieDaoException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "The workbook file has an invalid format.");
+			request.setAttribute("message", e.getMessage());
 			target = "error.jsp";
 		}
 		
 		request.getRequestDispatcher(target).forward(request, response);
-
-	}
-	
-	private void sort(final List<Movie> movies, final String sortType) {
-		switch (sortType) {
-			case "title":
-				Collections.sort(movies, (movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle()));
-				break;
-			case "lengthInMinutes":
-				Collections.sort(movies, (movie1, movie2) -> movie1.getLengthInMinutes().compareTo(movie2.getLengthInMinutes()));
-				Collections.reverse(movies);
-				break;
-			case "director":
-				Collections.sort(movies, (movie1, movie2) -> movie1.getDirector().compareTo(movie2.getDirector()));
-				break;
-			default:
-				break;
-			
-		}
+		
 	}
 
 	/**

@@ -49,7 +49,5 @@ public class Movie implements Serializable {
 	public void setLengthInMinutes(Integer lengthInMinutes) {
 		this.lengthInMinutes = lengthInMinutes;
 	}
-	
-	
 
 }

@@ -13,7 +13,7 @@
 				<h1>Welcome to the Movies Application</h1>
 			</div>
 <%@ include file="includes/navigation.jsp" %>
-			<div class="container">
+			<br><div class="container">
 				<p>This is a movies application where you can look up movies
 				to see who directed them and find out how long they are.</p>
 			</div>
